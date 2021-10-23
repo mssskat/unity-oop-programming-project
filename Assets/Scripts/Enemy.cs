@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : Actor
 {
-    [SerializeField] protected GameObject m_ProjectilePrefab;
     [SerializeField] private float m_DistanceTreshhold = 40;
     [SerializeField] private float m_AttackDelay = 2;
 
@@ -69,14 +68,6 @@ public class Enemy : Actor
         Vector3 attackDirection = (target.transform.position - transform.position).normalized;
         transform.rotation = Quaternion.FromToRotation(Vector3.right, attackDirection);
         GetComponent<Rigidbody>().AddForce(attackDirection * force, ForceMode.Impulse);
-    }
-
-    protected void ProjectileAttack(Vector3 relativePosition, Vector3 direction)
-    {
-        Vector3 projectileStartPosition = transform.position + relativePosition;
-        Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.right, direction);
-        GameObject projectile = Instantiate(m_ProjectilePrefab, projectileStartPosition, projectileRotation);
-        projectile.GetComponent<Projectile>().SetParent(gameObject);
     }
 
     private IEnumerator DelayedAttack(GameObject target, float delay)

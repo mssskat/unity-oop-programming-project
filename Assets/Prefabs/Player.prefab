@@ -144,8 +144,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Health: 1000
   m_MaxHealth: 1000
+  m_ProjectilePrefab: {fileID: 5034061533724726359, guid: fceb994f8e9a8c7cf9f18f7cfd4aa255, type: 3}
   m_MoveSpeed: 20
   m_RotateSpeed: 90
+  m_MinAttackInterval: 0.25
 --- !u!54 &-38738910753878689
 Rigidbody:
   m_ObjectHideFlags: 0

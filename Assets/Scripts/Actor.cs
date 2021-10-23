@@ -6,6 +6,7 @@ public class Actor : MonoBehaviour
 {
     [SerializeField] private uint m_Health;
     [SerializeField] private uint m_MaxHealth = 100;
+    [SerializeField] protected GameObject m_ProjectilePrefab;
 
     protected IHealthPresenter healthPresenter;
 
@@ -28,5 +29,13 @@ public class Actor : MonoBehaviour
     protected virtual void Die()
     {
         Debug.Log("Object " + gameObject.name + " has been destroyed");
+    }
+
+    protected void ProjectileAttack(Vector3 relativePosition, Vector3 direction)
+    {
+        Vector3 projectileStartPosition = transform.position + relativePosition;
+        Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.right, direction);
+        GameObject projectile = Instantiate(m_ProjectilePrefab, projectileStartPosition, projectileRotation);
+        projectile.GetComponent<Projectile>().SetParent(gameObject);
     }
 }
