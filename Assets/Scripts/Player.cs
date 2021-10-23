@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Actor
 {
     [SerializeField] private float m_MoveSpeed = 20;
     [SerializeField] private float m_RotateSpeed = 60;
