@@ -14,7 +14,6 @@ public class Player : Actor
     // Start is called before the first frame update
     private void Awake()
     {
-        healthPresenter = GameObject.Find("Health Bar").GetComponent<UIHealthBar>();
         m_Rigidbody = GetComponent<Rigidbody>();
         m_TimeSinceLatestAttack = 0;
     }

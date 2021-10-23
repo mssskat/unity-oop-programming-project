@@ -8,7 +8,9 @@ public class Actor : MonoBehaviour
     [SerializeField] private uint m_MaxHealth = 100;
     [SerializeField] protected GameObject m_ProjectilePrefab;
 
-    protected IHealthPresenter healthPresenter;
+    public IHealthPresenter healthPresenter;
+    public delegate void ReportOnEvent(GameObject obj);
+    public ReportOnEvent ReportOnDeath;
 
     public void AcceptDamage(uint amount)
     {
@@ -22,6 +24,7 @@ public class Actor : MonoBehaviour
         if(m_Health == 0)
         {
             Die();
+            ReportOnDeath(gameObject);
             Destroy(gameObject);
         }
     }
