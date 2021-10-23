@@ -36,4 +36,9 @@ public class Player : Actor
             }
         }
     }
+
+    protected override void Die()
+    {
+        GameObject.Find("Spawn Manager").GetComponent<SpawnManager>().GameOver();
+    }
 }

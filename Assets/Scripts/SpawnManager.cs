@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] private GameObject m_GameOverText;
     [SerializeField] private GameObject m_PlayerPrefab;
     [SerializeField] private GameObject m_TankPrefab;
     [SerializeField] private GameObject m_EnhancedTankPrefab;
     [SerializeField] private GameObject m_GoliathTankPrefab;
+
+    public void GameOver()
+    {
+        m_GameOverText.SetActive(true);
+    }
 
     // Start is called before the first frame update
     private void Start()
