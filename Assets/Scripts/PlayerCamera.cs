@@ -8,17 +8,14 @@ public class PlayerCamera : MonoBehaviour
 
   public Transform trackedObject { get; set; }
 
-  // Start is called before the first frame update
-  private void Start()
-  {
-
-  }
-
   // Update is called once per frame
   private void LateUpdate()
   {
-      transform.position =
-          trackedObject.position + (trackedObject.rotation * m_Offset);
-      transform.LookAt(trackedObject);
+      if(trackedObject != null)
+      {
+          transform.position =
+              trackedObject.position + (trackedObject.rotation * m_Offset);
+          transform.LookAt(trackedObject);
+      }
   }
 }

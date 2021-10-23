@@ -10,7 +10,7 @@ public class Player : Actor
     private Rigidbody m_Rigidbody;
 
     // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }

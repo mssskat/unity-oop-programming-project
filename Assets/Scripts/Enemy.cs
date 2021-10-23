@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Actor
 {
-    [SerializeField] private GameObject m_ProjectilePrefab;
-    [SerializeField] private Vector3 m_ProjectileSpawnPoint;
-    [SerializeField] private float m_CollideAttackForce;
+    [SerializeField] protected GameObject m_ProjectilePrefab;
+    [SerializeField] private float m_DistanceTreshhold = 40;
+    [SerializeField] private float m_AttackDelay = 2;
 
     private GameObject m_Target;
 
@@ -18,41 +18,65 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        CollideAttack(m_Target);
-        StartCoroutine(DelayedAttack(m_Target, 2));
+        if(m_Target != null)
+        {
+            StartCoroutine(DelayedAttack(m_Target, m_AttackDelay));
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
-        RotateToTarget(m_Target);
-
-        if(Vector3.Distance(m_Target.transform.position, transform.position) > 40)
+        if(m_Target != null)
         {
-            CollideAttack(m_Target);
+            PerformIdleAction(m_Target);
+
+            float distanceToTarget = Vector3.Distance(m_Target.transform.position, transform.position);
+
+            if(distanceToTarget < m_DistanceTreshhold)
+            {
+                PerformShortDistanceAction(m_Target);
+            }
+            else
+            {
+                PerformLongDistanceAction(m_Target);
+            }
         }
     }
 
-    private void RotateToTarget(GameObject target)
+    protected virtual void PerformIdleAction(GameObject target) {}
+
+    protected virtual void PerformShortDistanceAction(GameObject target) {}
+
+    protected virtual void PerformLongDistanceAction(GameObject target) {}
+
+    protected virtual void PerformRegularAttack(GameObject target) {}
+
+    protected void MoveToDirection(Vector3 direction, float speed)
+    {
+        transform.Translate(speed * direction.normalized * Time.deltaTime);
+    }
+
+    protected void RotateToTarget(GameObject target)
     {
         Vector3 targetDirection = target.transform.position - transform.position;
         targetDirection.y = 0;
         transform.rotation = Quaternion.FromToRotation(Vector3.right, targetDirection);
     }
 
-    private void CollideAttack(GameObject target)
+    protected void CollideAttack(GameObject target, float force)
     {
         Vector3 attackDirection = (target.transform.position - transform.position).normalized;
         transform.rotation = Quaternion.FromToRotation(Vector3.right, attackDirection);
-        GetComponent<Rigidbody>().AddForce(attackDirection * m_CollideAttackForce, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(attackDirection * force, ForceMode.Impulse);
     }
 
-    private void ProjectileAttack(GameObject target)
+    protected void ProjectileAttack(Vector3 relativePosition, Vector3 direction)
     {
-        Vector3 attackDirection = target.transform.position - transform.position;
-        Vector3 projectileStartPosition = transform.position + transform.TransformVector(m_ProjectileSpawnPoint);
-        Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.right, attackDirection);
-        Instantiate(m_ProjectilePrefab, projectileStartPosition, projectileRotation);
+        Vector3 projectileStartPosition = transform.position + relativePosition;
+        Quaternion projectileRotation = Quaternion.FromToRotation(Vector3.right, direction);
+        GameObject projectile = Instantiate(m_ProjectilePrefab, projectileStartPosition, projectileRotation);
+        projectile.GetComponent<Projectile>().SetParent(gameObject);
     }
 
     private IEnumerator DelayedAttack(GameObject target, float delay)
@@ -60,7 +84,10 @@ public class Enemy : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(delay);
-            ProjectileAttack(target);
+            if(target != null)
+            {
+                PerformRegularAttack(target);
+            }
         }
     }
 }

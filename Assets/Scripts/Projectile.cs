@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -7,10 +5,11 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float m_Speed = 5;
     [SerializeField] private uint m_Damage = 1;
 
-    // Start is called before the first frame update
-    private void Start()
-    {
+    private Transform[] m_IgnoredObjects;
 
+    public void SetParent(GameObject parent)
+    {
+        m_IgnoredObjects = parent.GetComponentsInChildren<Transform>();
     }
 
     // Update is called once per frame
@@ -21,6 +20,11 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(isIgnoredPbject(other.gameObject))
+        {
+            return;
+        }
+
         var actor = other.gameObject.GetComponentInParent<Actor>();
         if(actor != null)
         {
@@ -28,5 +32,22 @@ public class Projectile : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    private bool isIgnoredPbject(Object collidedObject)
+    {
+        if(m_IgnoredObjects == null)
+        {
+            return false;
+        }
+
+        foreach(Transform children in m_IgnoredObjects)
+        {
+            if(children != null && children.gameObject == collidedObject)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
