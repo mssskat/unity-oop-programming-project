@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // ABSTRACTION: SpawnManager contains different higher-level methods
 public class SpawnManager : MonoBehaviour
@@ -23,6 +24,12 @@ public class SpawnManager : MonoBehaviour
     {
         m_IsGameActive = false;
         m_UIManager.DisplayTitleText("Game Over!");
+        m_UIManager.EnableRetryButton();
+    }
+
+    public void OnRetryButtonPressed()
+    {
+        SceneManager.LoadScene("Main Scene");
     }
 
     private void OnEnemyDied(GameObject enemy)

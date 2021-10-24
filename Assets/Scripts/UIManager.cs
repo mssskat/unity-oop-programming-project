@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject m_EnemyHealthBarPrefab;
 
     private GameObject m_CentralTitleText;
+    private GameObject m_CentralButton;
     private List<GameObject> m_EnemyHealthBars;
 
     public void DisplayTitleText(string text)
@@ -25,6 +26,11 @@ public class UIManager : MonoBehaviour
     public void DisableTitleText()
     {
         m_CentralTitleText.SetActive(false);
+    }
+
+    public void EnableRetryButton()
+    {
+        m_CentralButton.SetActive(true);
     }
 
     public void DisplayTitleText(string text, float displayTime)
@@ -74,5 +80,6 @@ public class UIManager : MonoBehaviour
     {
         m_EnemyHealthBars = new List<GameObject>();
         m_CentralTitleText = transform.Find("Central Text").gameObject;
+        m_CentralButton = transform.Find("Retry Button").gameObject;
     }
 }
