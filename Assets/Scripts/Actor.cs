@@ -16,6 +16,11 @@ public class Actor : MonoBehaviour
     // ABSTRACTION: AcceptDamage deals with damage
     public void AcceptDamage(uint amount)
     {
+        if(m_Health == 0)
+        {
+            return;
+        }
+
         m_Health = (m_Health > amount) ? m_Health - amount : 0;
 
         if(healthPresenter != null)
