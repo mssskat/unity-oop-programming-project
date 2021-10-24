@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: b90e5c6cc792d14c3933779fa257dae0, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -171,6 +171,8 @@ MonoBehaviour:
   m_EnhancedTankPrefab: {fileID: 6616576454395553840, guid: ac3463f797b22a8b3ba5c6e728c58c96, type: 3}
   m_GoliathTankPrefab: {fileID: 6616576454395553840, guid: a75aa2da06a57a2b68898998602edd7c, type: 3}
   m_UIManager: {fileID: 473549048}
+  m_WaveMessages: []
+  m_WaveMessageDisplayTime: 3
 --- !u!1 &368842381
 GameObject:
   m_ObjectHideFlags: 0
