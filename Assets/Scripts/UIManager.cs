@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// ABSTRACTION: UIManager contains helper methods for interacting with UI Canvas
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_EnemyHealthBarPrefab;

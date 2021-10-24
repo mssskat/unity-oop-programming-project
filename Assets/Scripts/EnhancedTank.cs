@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE: EnhancedTank class derives from Enemy base class indicating
+// that it is a kind of enemy
 public class EnhancedTank : Enemy
 {
     [SerializeField] private float m_HeadRotationSpeed = 60;
@@ -16,6 +18,7 @@ public class EnhancedTank : Enemy
         m_Head = transform.Find("Head");
     }
 
+    // POLYMORPHISM: Override PerformLongDistanceAction
     protected override void PerformIdleAction(GameObject target)
     {
         m_Head.Rotate(Vector3.up, Time.deltaTime * m_HeadRotationSpeed);
@@ -25,12 +28,14 @@ public class EnhancedTank : Enemy
         MoveToDirection(moveDirection, m_MoveSpeed);
     }
 
+    // POLYMORPHISM: Override PerformShortDistanceAction
     protected override void PerformShortDistanceAction(GameObject target)
     {
         Vector3 moveDirection = -(target.transform.position - transform.position);
         MoveToDirection(moveDirection, m_MoveSpeed);
     }
 
+    // POLYMORPHISM: Override PerformRegularAttack
     protected override void PerformRegularAttack(GameObject target)
     {
         Vector3 attackDirection = m_Head.right;

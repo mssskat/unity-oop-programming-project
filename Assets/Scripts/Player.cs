@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE: Player class derives from Actor base class
 public class Player : Actor
 {
     [SerializeField] private float m_MoveSpeed = 20;
@@ -36,6 +37,7 @@ public class Player : Actor
         }
     }
 
+    // POLYMORPHISM: Override virtual method Die
     protected override void Die()
     {
         GameObject.Find("Spawn Manager").GetComponent<SpawnManager>().GameOver();

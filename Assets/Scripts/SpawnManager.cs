@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// ABSTRACTION: SpawnManager contains different higher-level methods
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_PlayerPrefab;

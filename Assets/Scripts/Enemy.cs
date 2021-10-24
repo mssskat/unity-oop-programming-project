@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE: Enemy class derives from Actor base class and is a base class
+// for all enemy classes
 public class Enemy : Actor
 {
     [SerializeField] private float m_DistanceTreshhold = 40;
@@ -43,12 +45,16 @@ public class Enemy : Actor
         }
     }
 
+    // POLYMORPHISM: A virtual method defines action performed in every Update
     protected virtual void PerformIdleAction(GameObject target) {}
 
+    // POLYMORPHISM: A virtual method defines action performed when target is at short distance
     protected virtual void PerformShortDistanceAction(GameObject target) {}
 
+    // POLYMORPHISM: A virtual method defines action performed when target is at long distance
     protected virtual void PerformLongDistanceAction(GameObject target) {}
 
+    // POLYMORPHISM: A virtual method defines enemy attack
     protected virtual void PerformRegularAttack(GameObject target) {}
 
     protected void MoveToDirection(Vector3 direction, float speed)

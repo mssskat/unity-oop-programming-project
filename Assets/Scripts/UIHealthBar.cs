@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// POLYMORPHISM: UIHealthBar implements IHealthPresenter interface by overriding
+// UpdateHealth method
 public class UIHealthBar : MonoBehaviour, IHealthPresenter
 {
     [SerializeField] private Image m_BarImage;

@@ -5,13 +5,23 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float m_Speed = 5;
     [SerializeField] private uint m_Damage = 1;
 
+    private GameObject m_Parent;
     private Transform[] m_IgnoredObjects;
     private bool m_IsEnemyOwned;
 
-    public void SetParent(GameObject parent)
+    // ENCAPSULATION: Use custom setter to initialise private fields 
+    public GameObject parent
     {
-        m_IsEnemyOwned = parent.CompareTag("Enemy");
-        m_IgnoredObjects = parent.GetComponentsInChildren<Transform>();
+        get
+        {
+            return m_Parent;
+        }
+        set
+        {
+            m_Parent = value;
+            m_IsEnemyOwned = m_Parent.CompareTag("Enemy");
+            m_IgnoredObjects = m_Parent.GetComponentsInChildren<Transform>();
+        }
     }
 
     // Update is called once per frame
@@ -47,6 +57,7 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // ABSTRACTION: method checks if a projectile should not interact with object
     private bool isIgnoredPbject(Object collidedObject)
     {
         if(m_IgnoredObjects == null)

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE: GoliathTank class derives from Enemy base class indicating
+// that it is a kind of enemy
 public class GoliathTank : Enemy
 {
     [SerializeField] private float m_MoveSpeed;
@@ -23,6 +25,7 @@ public class GoliathTank : Enemy
         }
     }
 
+    // POLYMORPHISM: Override PerformIdleAction
     protected override void PerformIdleAction(GameObject target)
     {
         m_Body.Rotate(Vector3.up, Time.deltaTime * m_BodyRotationSpeed);
@@ -31,16 +34,19 @@ public class GoliathTank : Enemy
         MoveToDirection(directionToTarget, m_CurrentMoveSpeed);
     }
 
+    // POLYMORPHISM: Override PerformShortDistanceAction
     protected override void PerformShortDistanceAction(GameObject target)
     {
         m_CurrentMoveSpeed = 0;
     }
 
+    // POLYMORPHISM: Override PerformLongDistanceAction
     protected override void PerformLongDistanceAction(GameObject target)
     {
         m_CurrentMoveSpeed = m_MoveSpeed;
     }
 
+    // POLYMORPHISM: Override PerformRegularAttack
     protected override void PerformRegularAttack(GameObject target)
     {
         Vector3 attackDirection = m_Body.right;
