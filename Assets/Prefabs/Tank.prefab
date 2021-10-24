@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: -556485324248142352}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,11 +159,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Health: 100
+  m_MaxHealth: 100
   m_ProjectilePrefab: {fileID: 5034061533724726359, guid: f40665ed856b55a9e83b2d2ef36b2d83, type: 3}
   m_DistanceTreshhold: 40
   m_AttackDelay: 1
   m_GunPoint: {x: 4, y: 1, z: 0}
-  m_CollideAttackForce: 10
+  m_CollideAttackForce: 20
 --- !u!1 &6616576454744929751
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,9 +65,9 @@ public class Enemy : Actor
 
     protected void CollideAttack(GameObject target, float force)
     {
-        Vector3 attackDirection = (target.transform.position - transform.position).normalized;
+        Vector3 attackDirection = (target.transform.position - transform.position);
         transform.rotation = Quaternion.FromToRotation(Vector3.right, attackDirection);
-        GetComponent<Rigidbody>().AddForce(attackDirection * force, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(attackDirection.normalized * force);
     }
 
     private IEnumerator DelayedAttack(GameObject target, float delay)

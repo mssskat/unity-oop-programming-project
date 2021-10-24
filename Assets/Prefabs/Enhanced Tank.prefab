@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7967984296077765900}
   m_Layer: 0
   m_Name: Enhanced Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,7 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e52b0573864f9b40ae6f0f2581db7c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Health: 100
+  m_Health: 200
+  m_MaxHealth: 200
   m_ProjectilePrefab: {fileID: 5034061533724726359, guid: f40665ed856b55a9e83b2d2ef36b2d83, type: 3}
   m_DistanceTreshhold: 20
   m_AttackDelay: 0.5

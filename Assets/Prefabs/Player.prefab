@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 363621b226a14e83595125ec87a21cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Health: 1000
-  m_MaxHealth: 1000
+  m_Health: 500
+  m_MaxHealth: 500
   m_ProjectilePrefab: {fileID: 5034061533724726359, guid: fceb994f8e9a8c7cf9f18f7cfd4aa255, type: 3}
   m_MoveSpeed: 20
   m_RotateSpeed: 90

@@ -6,9 +6,11 @@ public class Projectile : MonoBehaviour
     [SerializeField] private uint m_Damage = 1;
 
     private Transform[] m_IgnoredObjects;
+    private bool m_IsEnemyOwned;
 
     public void SetParent(GameObject parent)
     {
+        m_IsEnemyOwned = parent.CompareTag("Enemy");
         m_IgnoredObjects = parent.GetComponentsInChildren<Transform>();
     }
 
@@ -24,6 +26,17 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
+
+        if(m_IsEnemyOwned)
+        {
+            var enemy = other.gameObject.GetComponentInParent<Enemy>();
+            if(enemy != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
+
 
         var actor = other.gameObject.GetComponentInParent<Actor>();
         if(actor != null)

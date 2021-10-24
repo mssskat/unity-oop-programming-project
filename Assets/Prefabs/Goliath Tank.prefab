@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 6704365400880607364}
   m_Layer: 0
   m_Name: Goliath Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -638,12 +638,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc96c51c8c87e560a3a11555b474be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Health: 200
+  m_Health: 400
+  m_MaxHealth: 400
   m_ProjectilePrefab: {fileID: 5034061533724726359, guid: f40665ed856b55a9e83b2d2ef36b2d83, type: 3}
   m_DistanceTreshhold: 15
-  m_AttackDelay: 1
+  m_AttackDelay: 0.5
   m_MoveSpeed: 5
-  m_BodyRotationSpeed: 30
+  m_BodyRotationSpeed: 60
   m_GunPoints: []
 --- !u!1 &6616576454744929751
 GameObject:

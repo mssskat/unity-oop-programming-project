@@ -24,7 +24,10 @@ public class Actor : MonoBehaviour
         if(m_Health == 0)
         {
             Die();
-            ReportOnDeath(gameObject);
+            if(ReportOnDeath != null)
+            {
+                ReportOnDeath(gameObject);
+            }
             Destroy(gameObject);
         }
     }

@@ -7,7 +7,30 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_EnemyHealthBarPrefab;
 
+    private GameObject m_CentralTitleText;
     private List<GameObject> m_EnemyHealthBars;
+
+    public void DisplayTitleText(string text)
+    {
+        m_CentralTitleText.GetComponent<Text>().text = text;
+        EnableTitleText();
+    }
+
+    public void EnableTitleText()
+    {
+        m_CentralTitleText.SetActive(true);
+    }
+
+    public void DisableTitleText()
+    {
+        m_CentralTitleText.SetActive(false);
+    }
+
+    public void DisplayTitleText(string text, float displayTime)
+    {
+        m_CentralTitleText.GetComponent<Text>().text = text;
+        StartCoroutine(DisplayText(displayTime));
+    }
 
     public IHealthPresenter GetPlayerHealthBar()
     {
@@ -39,15 +62,16 @@ public class UIManager : MonoBehaviour
         m_EnemyHealthBars.Clear();
     }
 
-    // Start is called before the first frame update
+    private IEnumerator DisplayText(float time)
+    {
+        EnableTitleText();
+        yield return new WaitForSeconds(time);
+        DisableTitleText();
+    }
+
     private void Awake()
     {
         m_EnemyHealthBars = new List<GameObject>();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-
+        m_CentralTitleText = transform.Find("Central Text").gameObject;
     }
 }
